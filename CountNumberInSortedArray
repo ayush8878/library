@@ -1,0 +1,43 @@
+public class CountNumberInSortedArray
+{
+
+/*
+*This method recursively find item count in array considering array is sorted in O(n) complexity
+*/
+public static int countNumberInArray(int []arr,int item,int start,int end)
+  {
+  if(start > end)
+     {
+      return 0;
+      }
+  int mid = (int)Math.floor((start+end)/2);
+  if(arr[mid] < item)
+     {
+      return countNumberInArray(arr,item,start,mid-1);
+      } 
+   if(arr[mid] > item)
+      {
+      return countNumberInArray(arr,item,mid+1,end);
+      }
+   return countNumberInArray(arr,item,start,mid-1) + 1 + countNumberInArray(arr,item,mid+1,end); 
+  }
+
+public static void runTestCases()
+  {
+  // 1,2,2,2,3,4,5
+ int []arr = new int[]{1,2,2,2,3,4,5};
+ int item = 2;
+ int start = 0;
+ int end = 6; 
+ int result = countNumberInArray(arr,item,start,end);
+ System.out.print(String.format("Found %s in %s %s times",item,java.util.Arrays.toString(arr),result));
+  }
+
+public static void main(String args[])
+  {
+  runTestCases();
+  }
+
+}
+
+

@@ -9,32 +9,20 @@ public class MaximumSumSubArrayOfSizeK
                  int maxSum = 0;
                  for( int windowEnd = 0;windowEnd<arr.length;windowEnd++)
                       {
+                        // add windowEnd value to windowSum
+                       windowSum += arr[windowEnd];
                         if(windowEnd>=k-1)
-                           {  
-                            // find sum of window
-                            int windowSum = findWindowSum(arr,windowStart,windowEnd);
+                           {
                             if(windowSum > maxSum )
                               {
                               maxSum = windowSum ;
-                              }
+                              }   
+                            windowSum -= arr[windowStart]; 
                             windowStart++;
                             }
                       }
                       return maxSum;
                  }
-/*
-*  This method will find window sum
-*/
-private static int findWindowSum(int []arr,int windowStart,int windowEnd)
-                 {
-                  int windowSum = 0;
-                  for(;windowStart<=windowEnd;windowStart++)
-                       {
-                   windowSum += arr[windowStart];
-                        }
-                  return windowSum;
-                  }
-
 public static void main(String args[])
 {
 int []arr = new int[]{1,3,2,6,-1,4,1,8,2};
